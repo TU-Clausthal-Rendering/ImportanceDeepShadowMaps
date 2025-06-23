@@ -1,0 +1,166 @@
+#Szenarios
+#0 - Animated with 4 animated light sources
+#1 - Spot at three glas panels
+#2 - Spot at heads with hair
+#3 - Directional Light
+#4 - Many Lights 1 Spot
+#5 - Many Lights 4 Spots
+#6 - Many Lights 8 Spots
+scenario = 5
+
+# Load scene
+sceneBuilder.importScene("AnimationAndLightSources.gltf")
+
+if(scenario != 0):
+	for l in sceneBuilder.lights:
+		sceneBuilder.removeLight(l.name)
+
+if(scenario == 3):#Directional Light
+	addSpotGlas = False
+	addSpotHair = False
+	sun = DirectionalLight("Sun")
+	sun.intensity = float3(1.0, 0.7921 ,0.5137) * 20.0
+	sun.direction = float3(0.714, -0.210, -0.668)
+	sceneBuilder.addLight(sun)
+elif(scenario == 1): #Glas Panels
+	spotGlas = PointLight('SpotGlas')
+	spotGlas.intensity = float3(900.000000)
+	spotGlas.position = float3(-30.947, 6.749, 32.825)
+	spotGlas.direction = float3(0.371, -0.621, -0.691)
+	spotGlas.openingAngle = 0.393
+	spotGlas.penumbraAngle = 0.059
+	sceneBuilder.addLight(spotGlas)
+elif(scenario == 2): # Hair Light
+	spotHair = PointLight('SpotHair')
+	spotHair.intensity = float3(900.000000)
+	spotHair.position = float3(31.368, 5.860, 31.088)
+	spotHair.direction = float3(-0.240, -0.694, -0.678)
+	spotHair.openingAngle = 0.393
+	spotHair.penumbraAngle = 0.059
+	sceneBuilder.addLight(spotHair)
+
+if(scenario >= 4):
+	manyLights = PointLight('ManyLights0')
+	manyLights.intensity = float3(1400.000000)
+	manyLights.position = float3(-14.151, 13.022, 18.270)
+	manyLights.direction = float3(0.503,-0.529 , -0.684)
+	manyLights.openingAngle = 0.339
+	manyLights.penumbraAngle = 0.059
+	sceneBuilder.addLight(manyLights)
+
+if(scenario >= 5):
+	manyLights = PointLight('ManyLights1')
+	manyLights.intensity = float3(1.0, 0.18039, 0.2313) * 2100.0 #Peach
+	manyLights.position = float3(-6.188, 15.906, 25.384)
+	manyLights.direction = float3(0.140,-0.503,-0.853)
+	manyLights.openingAngle = 0.171
+	manyLights.penumbraAngle = 0.040
+	sceneBuilder.addLight(manyLights)
+	manyLights = PointLight('ManyLights2')
+	manyLights.intensity = float3(0.43137, 1.0, 1.0) * 1000.0 #Cyan
+	manyLights.position = float3(-16.051, 3.586, -23.149)
+	manyLights.direction = float3(0.994, 0.099, 0.038)
+	manyLights.openingAngle = 0.322
+	manyLights.penumbraAngle = 0.09
+	sceneBuilder.addLight(manyLights)
+	manyLights = PointLight('ManyLights3')
+	manyLights.intensity = float3(1.0, 0.1686, 0.94117) * 1300.0 #Bright Puple/Pink
+	manyLights.position = float3(13.397, 11.149, 5.275)
+	manyLights.direction = float3(-0.683, -0.437, -0.585)
+	manyLights.openingAngle = 0.149
+	manyLights.penumbraAngle = 0.04
+	sceneBuilder.addLight(manyLights)
+
+if(scenario == 6):
+	manyLights = PointLight('ManyLights4')
+	manyLights.intensity = float3(0.3137, 1.0, 0.1372) * 2400.0 #Bright Green
+	manyLights.position = float3(-23.796, 17.716, 12.920)
+	manyLights.direction = float3(0.815, -0.548, -0.187)
+	manyLights.openingAngle = 0.157
+	manyLights.penumbraAngle = 0.030
+	sceneBuilder.addLight(manyLights)
+	manyLights = PointLight('ManyLights5')
+	manyLights.intensity = float3(1.0, 0.03921, 0.03921) * 1200.0 #Red
+	manyLights.position = float3(12.635, 14.349, -27.100)
+	manyLights.direction = float3(-0.845, -0.467, 0.260)
+	manyLights.openingAngle = 0.139
+	manyLights.penumbraAngle = 0.025
+	sceneBuilder.addLight(manyLights)
+	manyLights = PointLight('ManyLights6')
+	manyLights.intensity = float3(0.13725, 0.34509, 1.0) * 4000.0 #Blue
+	manyLights.position = float3(11.044, 3.412, -16.856)
+	manyLights.direction = float3(-0.544, -0.096, 0.834)
+	manyLights.openingAngle = 0.149
+	manyLights.penumbraAngle = 0.04
+	sceneBuilder.addLight(manyLights)
+	manyLights = PointLight('ManyLights7')
+	manyLights.intensity = float3(0.7843, 0.82352, 0.0) * 1400 #Yellow
+	manyLights.position = float3(12.800, 9.605, -3.409)
+	manyLights.direction = float3(-0.580, -0.335, -0.743)
+	manyLights.openingAngle = 0.078
+	manyLights.penumbraAngle = 0.015
+	sceneBuilder.addLight(manyLights)
+
+#Blacklist toy car alpha so reflections work
+car = sceneBuilder.getMaterial("ToyCar")
+car.castShadow = False
+
+#Add Cameras
+hairCam = Camera("MultiLightsCam")
+hairCam.position = float3(1.736089, 4.540469, 19.798708)
+hairCam.target =  float3(1.563562, 4.433612, 18.819517)
+hairCam.up = float3(0, 1, 0)
+hairCam.focalLength = 36.95041275024414
+hairCam.nearPlane = 0.1
+hairCam.farPlane =  100.0
+sceneBuilder.addCamera(hairCam)
+
+#Add Cameras
+hairCam = Camera("HairCamera")
+hairCam.position = float3(29.390478, 2.948777, 30.278500)
+hairCam.target = float3(29.404879, 2.549746, 29.361675)
+hairCam.up = float3(0, 1, 0)
+hairCam.focalLength = 36.95041275024414
+hairCam.nearPlane = 0.1
+hairCam.farPlane =  100.0
+sceneBuilder.addCamera(hairCam)
+
+glasCam = Camera("GlasCamera")
+glasCam.position = float3(-23.867935, 4.471629, 30.452753)
+glasCam.target = float3(-24.284521, 3.912096, 29.736248)
+glasCam.up = float3(0, 1, 0)
+glasCam.focalLength = 36.95041275024414
+glasCam.nearPlane = 0.1
+glasCam.farPlane =  100.0
+sceneBuilder.addCamera(glasCam)
+
+smoke = StandardMaterial('Smoke1')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke3_15.png')
+sceneBuilder.addParticleSystem("Smoke1", smoke, 1600, float3(0,-2,0))
+
+smoke = StandardMaterial('Smoke2')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke3_17.png')
+sceneBuilder.addParticleSystem("Smoke2", smoke, 1600, float3(0,-2,0))
+
+smoke = StandardMaterial('Smoke3')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke3_11.png')
+sceneBuilder.addParticleSystem("Smoke3", smoke, 1600, float3(0,-2,0))
+
+#Load environment map
+sceneBuilder.envMap = EnvMap("irish_institute_2k.exr")
+sceneBuilder.envMap.intensity = 1

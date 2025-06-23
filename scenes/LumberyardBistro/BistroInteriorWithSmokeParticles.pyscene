@@ -1,0 +1,145 @@
+# Load scene
+sceneBuilder.importScene("BistroInterior_Wine.fbx")
+
+# Manually adjust emissives to get well exposed image
+for m in sceneBuilder.materials:
+    m.emissiveFactor *= 0
+
+## Absorption coefficients (or extinction coefficient in absence of scattering)
+# Taken from https://cseweb.ucsd.edu/~ravir/dilution.pdf and rescaled for Falcor scene units (meters)
+volume_absorption = {
+    'white_wine': float3(12.28758, 16.51818, 20.30273),
+    'red_wine': float3(117.13133, 251.91133, 294.33867),
+    'beer': float3(11.78552, 25.45862, 58.37241),
+    'bottle_wine': float3(102.68063, 168.015, 246.80438)
+}
+
+#View Cam
+testCam = Camera("ImageCamera")
+testCam.position = float3(11.861865, 2.385967, 3.525248)
+testCam.target = float3(11.855998, 2.296205, 2.529302)
+testCam.up = float3(0.000000, 1.000000, 0.000000)
+testCam.focalLength = 35.0
+testCam.nearPlane = 0.1
+testCam.farPlane =  50.0
+sceneBuilder.addCamera(testCam)
+
+#Use Blacklist
+useBlacklist = True
+if(useBlacklist):
+	for m in sceneBuilder.materials:
+		m.castShadow = False
+
+#DirLight
+useDirLight = False
+if(useDirLight):
+	sun = DirectionalLight("Sun")
+	sun.intensity = float3(1.0, 0.7921 ,0.5137) * 1000.0
+	sun.direction = float3(0.789,-0.205,-0.580)	
+	sceneBuilder.addLight(sun)
+else:
+	spot = PointLight('SpotLight1')
+	spot.intensity = float3(300.000000)
+	spot.position = float3(13.5140, 5.7805, -4.5362)
+	spot.direction = float3(0.0, -1.0, 0.0)
+	spot.openingAngle = 1.0
+	spot.penumbraAngle = 0.1
+	sceneBuilder.addLight(spot)
+	spot = PointLight('SpotLight2')
+	spot.intensity = float3(300.000000)
+	spot.position = float3(11.7189, 4.423, 1.4898)
+	spot.direction = float3(0.0, -1.0, 0.0)
+	spot.openingAngle = 1.0
+	spot.penumbraAngle = 0.1
+	sceneBuilder.addLight(spot)
+
+glass = sceneBuilder.getMaterial("TransparentGlass")
+glass.roughness = 0
+glass.metallic = 0
+glass.indexOfRefraction = 1.55
+glass.specularTransmission = 1
+glass.doubleSided = True
+glass.nestedPriority = 5
+
+bottle_wine = sceneBuilder.getMaterial("TransparentGlassWine")
+bottle_wine.roughness = 0
+bottle_wine.metallic = 0
+bottle_wine.indexOfRefraction = 1.55
+bottle_wine.specularTransmission = 1
+bottle_wine.doubleSided = True
+bottle_wine.nestedPriority = 5
+bottle_wine.volumeAbsorption = volume_absorption['bottle_wine']
+
+water = sceneBuilder.getMaterial("Water")
+water.roughness = 0
+water.metallic = 0
+water.indexOfRefraction = 1.33
+water.specularTransmission = 1
+water.doubleSided = True
+water.nestedPriority = 1
+
+ice = sceneBuilder.getMaterial("Ice")
+ice.roughness = 0.1
+ice.metallic = 0
+ice.indexOfRefraction = 1.31
+ice.specularTransmission = 1
+ice.doubleSided = True
+ice.nestedPriority = 4
+
+white_wine = sceneBuilder.getMaterial("White_Wine")
+white_wine.roughness = 0
+white_wine.metallic = 0
+white_wine.indexOfRefraction = 1.33
+white_wine.specularTransmission = 1
+white_wine.doubleSided = True
+white_wine.nestedPriority = 1
+white_wine.volumeAbsorption = volume_absorption['white_wine']
+
+red_wine = sceneBuilder.getMaterial("Red_Wine")
+red_wine.roughness = 0
+red_wine.metallic = 0
+red_wine.indexOfRefraction = 1.33
+red_wine.specularTransmission = 1
+red_wine.doubleSided = True
+red_wine.nestedPriority = 1
+red_wine.volumeAbsorption = volume_absorption['red_wine']
+
+beer = sceneBuilder.getMaterial("Beer")
+beer.roughness = 0
+beer.metallic = 0
+beer.indexOfRefraction = 1.33
+beer.specularTransmission = 1
+beer.doubleSided = True
+beer.nestedPriority = 1
+beer.volumeAbsorption = volume_absorption['beer']
+
+cookies = sceneBuilder.getMaterial("CookieJar_Cookies")
+cookies.nestedPriority = 10
+
+toffees = sceneBuilder.getMaterial("ToffeeJar_Toffee")
+toffees.nestedPriority = 10
+
+#Load environment map
+sceneBuilder.envMap = EnvMap("whiteBackground.png")
+sceneBuilder.envMap.intensity = 1
+
+
+#Smoke Particles
+#Add Particle Systems
+smoke_transparent = StandardMaterial('Smoke1')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke3_15.png')
+sceneBuilder.addParticleSystem("PTSmoke1", smoke_transparent, 2048, float3(1.0238,-1,-2.0599))
+
+smoke_transparent = StandardMaterial('Smoke1_2')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke3_20.png')
+sceneBuilder.addParticleSystem("PTSmoke2", smoke_transparent, 2048, float3(1.0238,-1,-2.0599))

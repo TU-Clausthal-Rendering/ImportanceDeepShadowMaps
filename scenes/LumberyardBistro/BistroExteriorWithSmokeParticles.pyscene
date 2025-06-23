@@ -1,0 +1,125 @@
+# Load scene
+sceneBuilder.importScene("BistroExterior.fbx")
+
+#Add double Sided Materials flag to doubleSided materials´
+metailRailing = sceneBuilder.getMaterial("MASTER_Forge_Metal")
+metailRailing.doubleSided = True
+
+grainMetal = sceneBuilder.getMaterial("MASTER_Grain_Metal")
+grainMetal.doubleSided = True
+
+concrete = sceneBuilder.getMaterial("MASTER_Concrete")
+concrete.doubleSided = True
+
+buildingDetails = sceneBuilder.getMaterial("MASTER_Building_Details")
+buildingDetails.doubleSided = True
+
+flowers = sceneBuilder.getMaterial("Foliage_Paris_Flowers")
+flowers.doubleSided = True
+
+chains = sceneBuilder.getMaterial("Streetlight_Chains")
+chains.doubleSided = True
+
+glass = sceneBuilder.getMaterial("MASTER_Glass_Exterior")
+glassReplacement = StandardMaterial('Glass')
+glassReplacement.baseColor = float4(1.0, 1.0, 1.0, 1.0)
+glassReplacement.roughness = 0.0
+glassReplacement.metallic = 1.0
+glassReplacement.doubleSided = True
+glassReplacement.thinSurface = False
+glassReplacement.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/MASTER_Glass_Exterior_BaseColor.dds')
+sceneBuilder.replaceMaterial(glass, glassReplacement)
+#glass.clearTexture(MaterialTextureSlot.BaseColor)
+#glass.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/MASTER_Glass_Exterior_BaseColor.dds')
+glass.metallic = 1.0
+
+#Add a test camera for time measurements
+testCam = Camera("ComparisonCamera")
+testCam.position = float3(-0.787667, 2.635386, -9.277820)
+testCam.target = float3(-1.411778, 2.580324, -8.498426)
+testCam.up = float3(0.000000, 1.000000, 0.000000)
+testCam.focalLength = 22.0
+testCam.nearPlane = 0.1
+testCam.farPlane =  300.0
+sceneBuilder.addCamera(testCam)
+
+#Add a test camera for time measurements
+testCam = Camera("TeaserCamera")
+testCam.position = float3(-1.564331, 4.336494, -19.585270) #float3(-2.720810, 4.166027, -20.157650)
+testCam.target = float3(-1.681392, 4.241994, -18.596651) #float3(-2.766633, 4.088075, -19.161747)
+testCam.up = float3(0.000000, 1.000000, 0.000000)
+testCam.focalLength = 35.0
+testCam.nearPlane = 0.1
+testCam.farPlane =  300.0
+sceneBuilder.addCamera(testCam)
+
+sceneBuilder.removeLight("directionalLight1")
+
+sun = DirectionalLight("Sun")
+sun.intensity = float3(1.0, 0.7921 ,0.5137) * 20.0
+#sun.direction = float3(-0.000,-0.876,-0.482)	#Original Direction
+#sun.direction = float3(-0.1,-0.864,-0.493)		#More visible errors
+#sun.direction = float3(0.078,-0.909,0.409)		#For TeaserCamera
+sun.direction = float3(0.456,-0.874,0.169)		#For Comparison
+#sun.direction = float3(0.199, -0.894, 0.402)	#Video Presentation
+
+sceneBuilder.addLight(sun)
+
+#Load environment map
+sceneBuilder.envMap = EnvMap("san_giuseppe_bridge_4k.hdr")
+sceneBuilder.envMap.intensity = 1
+
+#Blacklist
+useBlacklist = True
+if(useBlacklist):
+	for m in sceneBuilder.materials:
+		m.castShadow = False
+
+#Add Particle Systems
+smoke_transparent = StandardMaterial('Smoke1')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke3_15.png')
+sceneBuilder.addParticleSystem("Smoke1_1", smoke_transparent, 1400, float3(10,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke1_2')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke3_20.png')
+sceneBuilder.addParticleSystem("Smoke1_2", smoke_transparent, 1400, float3(10,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke1_3')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke_16.png')
+sceneBuilder.addParticleSystem("Smoke1_3", smoke_transparent, 1400, float3(10,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke2')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke_18.png')
+sceneBuilder.addParticleSystem("Smoke2", smoke_transparent, 2300, float3(-8,-2,8.8))
+
+smoke_transparent = StandardMaterial('Smoke3')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'ParticleTextures/smoke3_11.png')
+sceneBuilder.addParticleSystem("Smoke3", smoke_transparent, 2300, float3(-8,-2,-10))
+
+
+	

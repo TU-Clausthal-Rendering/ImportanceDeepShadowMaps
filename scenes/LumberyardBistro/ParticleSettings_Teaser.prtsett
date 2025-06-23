@@ -1,0 +1,137 @@
+{
+    "Smoke1_1": {
+        "gravity": 0.03999999910593033,
+        "gravityRandom": 0.004999999888241291,
+        "initialVelocity": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "lifetime": 30.0,
+        "lifetimeRandom": 1.0,
+        "radius": 0.4000000059604645,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.10000000149011612,
+        "shrinkAtEnd": 2.0,
+        "spawnPosition": [
+            -12.556400299072266,
+            0.0,
+            -1.5634000301361084
+        ],
+        "spawnRadius": 0.20000000298023224,
+        "spreadAngle": 0.20000000298023224,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke1_2": {
+        "gravity": 0.03999999910593033,
+        "gravityRandom": 0.004999999888241291,
+        "initialVelocity": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "lifetime": 30.0,
+        "lifetimeRandom": 1.0,
+        "radius": 0.4000000059604645,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.10000000149011612,
+        "shrinkAtEnd": 2.0,
+        "spawnPosition": [
+            -12.556400299072266,
+            0.0,
+            -1.5634000301361084
+        ],
+        "spawnRadius": 0.20000000298023224,
+        "spreadAngle": 0.20000000298023224,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke1_3": {
+        "gravity": 0.03999999910593033,
+        "gravityRandom": 0.004999999888241291,
+        "initialVelocity": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "lifetime": 30.0,
+        "lifetimeRandom": 1.0,
+        "radius": 0.4000000059604645,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.10000000149011612,
+        "shrinkAtEnd": 2.0,
+        "spawnPosition": [
+            -12.556400299072266,
+            0.0,
+            -1.5634000301361084
+        ],
+        "spawnRadius": 0.20000000298023224,
+        "spreadAngle": 0.20000000298023224,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke2": {
+        "gravity": -0.019999999552965164,
+        "gravityRandom": 0.0,
+        "initialVelocity": [
+            0.0,
+            0.5,
+            0.0
+        ],
+        "lifetime": 10.0,
+        "lifetimeRandom": 1.0,
+        "radius": 0.25,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.05000000074505806,
+        "shrinkAtEnd": 2.0,
+        "spawnPosition": [
+            -8.377300262451172,
+            0.0,
+            -10.531999588012695
+        ],
+        "spawnRadius": 0.38999998569488525,
+        "spreadAngle": 0.18000000715255737,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke3": {
+        "gravity": -0.019999999552965164,
+        "gravityRandom": 0.0,
+        "initialVelocity": [
+            0.0,
+            0.5,
+            0.0
+        ],
+        "lifetime": 10.0,
+        "lifetimeRandom": 1.0,
+        "radius": 0.25,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.05000000074505806,
+        "shrinkAtEnd": 2.0,
+        "spawnPosition": [
+            -8.377300262451172,
+            0.0,
+            8.808099746704102
+        ],
+        "spawnRadius": 0.38999998569488525,
+        "spreadAngle": 0.18000000715255737,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    }
+}

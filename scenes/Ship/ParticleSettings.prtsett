@@ -1,0 +1,29 @@
+{
+    "ParticleSystem1": {
+        "gravity": 0.10000000149011612,
+        "gravityRandom": 0.009999999776482582,
+        "initialVelocity": [
+            0.0,
+            1.0,
+            0.0
+        ],
+        "lifetime": 500.0,
+        "lifetimeRandom": 30.0,
+        "radius": 1.0,
+        "randomVelocity": 0.5,
+        "rndRadius": 0.5,
+        "shrinkAtEnd": -1.0,
+        "spawnPosition": [
+            0.0,
+            -2.0,
+            0.0
+        ],
+        "spawnRadius": 0.10000000149011612,
+        "spreadAngle": 1.2000000476837158,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    }
+}

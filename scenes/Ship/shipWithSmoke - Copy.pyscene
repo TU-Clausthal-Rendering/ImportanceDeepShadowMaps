@@ -1,0 +1,122 @@
+#Settings
+useMoreOpaqueParticleTextures = True
+SunDirection = 0 #0 - Teaser&Fig4; 1 - Fig2,7,8; 2 - Fig9
+
+# Load scene
+sceneBuilder.importScene("shipTransparency.gltf")
+
+#smoke = sceneBuilder.getMaterial("Smoke")
+
+sceneBuilder.removeLight("Light")
+sun = DirectionalLight("Sun")
+sun.intensity = float3(1.0, 0.8921 ,0.7137) * 12.0
+if(SunDirection == 0):
+	sun.direction = float3(0.755, -0.630, -0.181)
+elif(SunDirection == 1):
+	sun.direction = float3(-0.602, -0.589, 0.539)
+else:
+	sun.direction = float3(-0.016, -0.491, 0.871) 
+
+sceneBuilder.addLight(sun)
+
+#Camera for overview Image (fig2)
+testCam = Camera("Figure2")
+testCam.position = float3(3.549977, 3.562865, 0.940136)
+testCam.target =  float3(2.744333, 3.164799, 1.378862)
+testCam.up = float3(-0.000746, 1.000000, 0.000406)
+testCam.focalLength =  59.259254455566406
+testCam.nearPlane = 0.1
+testCam.farPlane = 100.0
+sceneBuilder.addCamera(testCam)
+
+#Camera for the opaque sm comparison
+testCam = Camera("Figure9")
+testCam.position = float3(1.285591, 4.198818, 0.751765)
+testCam.target = float3(0.800614, 3.653793, 1.435684)
+testCam.up = float3(0.000451, 1.000000, -0.000632)
+testCam.focalLength =  59.259254455566406
+testCam.nearPlane = 0.1
+testCam.farPlane = 100.0
+sceneBuilder.addCamera(testCam)
+
+#Camera for Teaser
+testCam = Camera("Teaser")
+testCam.position = float3(4.106746, 3.969979, -1.102362)
+testCam.target = float3(3.222856, 3.596568, -0.820753)
+testCam.up = float3(0.000818, 1.000000, -0.000261)
+testCam.focalLength = 35.0
+testCam.nearPlane = 0.1
+testCam.farPlane = 100.0
+sceneBuilder.addCamera(testCam)
+
+smoke = StandardMaterial('Smoke_Back_1')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke_6.png')
+else:
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke_6.png')
+sceneBuilder.addParticleSystem("SmokeB1", smoke, 600, float3(0,-2,0))
+
+smoke = StandardMaterial('Smoke_Back_2')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke_18.png')
+else:
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke_18.png')
+sceneBuilder.addParticleSystem("SmokeB2", smoke, 600, float3(0,-2,0))
+
+smoke = StandardMaterial('Smoke_Back_3')
+smoke.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke.roughness = 1.0
+smoke.metallic = 0
+smoke.doubleSided = True
+smoke.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke3_17.png')
+else:
+	smoke.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke3_17.png')
+sceneBuilder.addParticleSystem("SmokeB3", smoke, 600, float3(0,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke_Front_1')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke_14.png')
+else:
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke_14.png')
+sceneBuilder.addParticleSystem("SmokeF1", smoke_transparent, 800, float3(10,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke_Front_2')
+smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke_22.png')
+else:
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke_22.png')
+sceneBuilder.addParticleSystem("SmokeF2", smoke_transparent, 800, float3(10,-2,0))
+
+smoke_transparent = StandardMaterial('Smoke_Front_3')
+#smoke_transparent.baseColor = float4(1.0, 1.0, 1.0, 0.9)
+smoke_transparent.roughness = 1.0
+smoke_transparent.metallic = 0
+smoke_transparent.doubleSided = True
+smoke_transparent.thinSurface = True
+if(useMoreOpaqueParticleTextures):
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/MoreOpaque/smoke3_11.png')
+else:
+	smoke_transparent.loadTexture(MaterialTextureSlot.BaseColor, 'particleTextures/smoke3_11.png')
+sceneBuilder.addParticleSystem("SmokeF3", smoke_transparent, 800, float3(10,-2,0))

@@ -1,0 +1,83 @@
+{
+    "Smoke1": {
+        "gravity": 0.0,
+        "gravityRandom": 0.0,
+        "initialVelocity": [
+            0.0,
+            0.5270000100135803,
+            0.0
+        ],
+        "lifetime": 15.0,
+        "lifetimeRandom": 0.0,
+        "radius": 0.47999998927116394,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.07000000029802322,
+        "shrinkAtEnd": 1.0,
+        "spawnPosition": [
+            -4.034800052642822,
+            -0.32510000467300415,
+            4.674799919128418
+        ],
+        "spawnRadius": 0.7400000095367432,
+        "spreadAngle": 0.3449999988079071,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke2": {
+        "gravity": 0.009999999776482582,
+        "gravityRandom": 0.0,
+        "initialVelocity": [
+            0.0,
+            0.5270000100135803,
+            0.0
+        ],
+        "lifetime": 15.0,
+        "lifetimeRandom": 0.0,
+        "radius": 0.4000000059604645,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.10000000149011612,
+        "shrinkAtEnd": 1.0,
+        "spawnPosition": [
+            3.6214001178741455,
+            -0.33250001072883606,
+            -3.5650999546051025
+        ],
+        "spawnRadius": 0.35100001096725464,
+        "spreadAngle": 0.23000000417232513,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "Smoke3": {
+        "gravity": 0.009999999776482582,
+        "gravityRandom": 0.0,
+        "initialVelocity": [
+            0.0,
+            0.7429999709129333,
+            0.0
+        ],
+        "lifetime": 15.0,
+        "lifetimeRandom": 0.0,
+        "radius": 0.44999998807907104,
+        "randomVelocity": 0.0,
+        "rndRadius": 0.10000000149011612,
+        "shrinkAtEnd": 1.0,
+        "spawnPosition": [
+            -2.3598999977111816,
+            -0.33250001072883606,
+            -22.92300033569336
+        ],
+        "spawnRadius": 0.4410000145435333,
+        "spreadAngle": 0.09399999678134918,
+        "wind": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    }
+}
