@@ -44,6 +44,8 @@ To change the settings of our algorithm, navigate to the `IDSMRenderer` group in
 
 For more infos on the `ParticlePass` see the [Testing with more Scenes](#testing-with-more-scenes) section.
 
+The `Ship`, `ManyLights` and `BistroExterior` `.pyscene` have additional options at the top of the file. The `.pyscenes` can be found in the `scene/[SceneName]` folder. 
+
 Controls:
 - `WASD` - Camera movement
 - `Left Click` + `Mouse movement` - Change camera direction

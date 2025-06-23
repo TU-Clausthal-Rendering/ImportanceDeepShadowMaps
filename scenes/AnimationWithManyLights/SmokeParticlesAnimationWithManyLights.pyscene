@@ -6,7 +6,7 @@
 #4 - Many Lights 1 Spot
 #5 - Many Lights 4 Spots
 #6 - Many Lights 8 Spots
-scenario = 5
+scenario = 0
 
 # Load scene
 sceneBuilder.importScene("AnimationAndLightSources.gltf")
