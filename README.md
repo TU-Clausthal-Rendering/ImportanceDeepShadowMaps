@@ -17,8 +17,8 @@ This project was implemented using NVIDIA's Falcor rendering framework. See [REA
 The executable demo can be downloaded from the [Releases Page](https://github.com/TU-Clausthal-Rendering/ImportanceDeepShadowMaps/releases/latest). Alternatively the project can be built by following the instructions in [Building Falcor](#building-falcor) or the build instructions in the original [readme](README_Falcor.md).
 
 Teaser:
-[<img src="http://i.ytimg.com/vi/BvkLhBASKwY/maxresdefault.jpg" width="700">](https://youtu.be/BvkLhBASKwY)
 
+[<img src="http://i.ytimg.com/vi/BvkLhBASKwY/maxresdefault.jpg" width="700">](https://youtu.be/BvkLhBASKwY)
 
 ## Contents:
 * [Shader for Paper Methods](#shader-for-paper-methods)
